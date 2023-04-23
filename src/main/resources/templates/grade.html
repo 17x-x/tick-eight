@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en" xmlns:p="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Bootstrap demo</title>
+    <link href="/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet"  crossorigin="anonymous">
+</head>
+<body>
+<div align="center"><h1>学生管理系统评分界面</h1></div>
+<form action="/Score/grade.do" method="post">
+    <p th:text="学生"></p>
+    <select class="form-control" name="studentId">
+        <option th:text="请选择学生" disabled selected hidden></option>
+        <option th:each="student:${students}" th:value="${student.id}">
+            <span th:text="${student.name}"/>
+        </option>
+    </select>
+    <br/>
+    <p th:text="课程"></p>
+    <select class="form-control" name="courseId">
+        <option th:text="请选择课程" disabled selected hidden></option>
+        <option th:each="course:${courses}" th:value="${course.id}">
+            <span th:text="${course.name}"/>
+        </option>
+    </select>
+    <br/>
+    <p th:text="成绩"></p>
+    <input type="text" name="score"><br/>
+    <br/>
+    <button type="submit" class="btn btn-outline-primary">提交成绩</button>
+</form>
+
+<script src="/bootstrap/dist/js/bootstrap.bundle.min.js"  crossorigin="anonymous"></script>
+</body>
+</html>

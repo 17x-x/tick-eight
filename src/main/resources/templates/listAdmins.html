@@ -1,0 +1,23 @@
+<!doctype html>
+<html lang="en" xmlns:p="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Bootstrap demo</title>
+    <link href="/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet"  crossorigin="anonymous">
+</head>
+<body>
+<div align="center"><h1>管理员管理系统登录界面</h1></div>
+
+<table class="table table-striped">
+    <tr><th>ID</th><th>USERNAME</th><th>PASSWORD</th><th>NAME</th></tr>
+    <tr th:each="admin:${admins}">
+        <td th:text="${admin.id}"></td>
+        <td th:text="${admin.username}"></td>
+        <td th:text="${admin.password}"></td>
+        <td th:text="${admin.name}"></td>
+    </tr>
+</table>
+<script src="/bootstrap/dist/js/bootstrap.bundle.min.js"  crossorigin="anonymous"></script>
+</body>
+</html>

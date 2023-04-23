@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd" >
+    <bean id="myBWM" class="personal.xjl.jerrymouse.spring.Car">
+        <property name="brand" value="BWM"/>
+        <property name="type" value="X3"/>
+        <property name="maxSpeed" value="500"/>
+    </bean>
+    <bean id="myBYD" class="personal.xjl.jerrymouse.spring.Car">
+        <property name="brand" value="BYD"/>
+        <property name="type" value="UNKNOWN"/>
+        <property name="maxSpeed" value="300"/>
+    </bean>
+    <bean id="myNMW" class="personal.xjl.jerrymouse.spring.Cow">
+        <property name="name" value="NiuMoWang"/>
+        <property name="weight" value="500"/>
+    </bean>
+    <bean id="myNMWC" class="personal.xjl.jerrymouse.spring.CowCar">
+        <property name="wheel" value="3"/>
+        <property name="cow" ref="myNMW"/>
+    </bean>
+    <bean id="myNissan" class="personal.xjl.jerrymouse.spring.Car">
+        <constructor-arg name="brand" value="Nissan"/>
+        <constructor-arg name="type" value="UNKNOWN"/>
+        <constructor-arg name="maxSpeed" value="280"/>
+    </bean>
+    <bean id="lisi" class="personal.xjl.jerrymouse.spring.Human">
+        <property name="name" value="lisi"/>
+        <property name="cars" >
+            <list>
+                <ref bean="myBWM"></ref>
+                <ref bean="myBYD"></ref>
+                <ref bean="myNissan"></ref>
+            </list>
+        </property>
+    </bean>
+    <bean id="wangwu" class="personal.xjl.jerrymouse.spring.Human">
+        <property name="name" value="wangwu"/>
+
+    </bean>
+</beans>

@@ -1,0 +1,50 @@
+server:
+  port: 8080
+
+spring:
+  main:
+    allow-circular-references: true
+  mvc:
+    view:
+      #“/”表示resources/static/
+      prefix: /
+      suffix: .html
+    pathmatch:
+      matching-strategy: ant_path_matcher
+  messages:
+    basename: i18n/language
+  thymeleaf:
+    cache: false
+    #默认目录是resources/templates/
+    #prefix: classpath:/myPage/
+  servlet:
+    multipart:
+      max-file-size: 200MB
+      location: D:/Developer/idea/uploadFile
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/test?serverTimezone=UTC
+    username: root
+    password:
+    type: com.alibaba.druid.pool.DruidDataSource
+    #自动往数据库建表
+    #    schema:
+    #      - classpath:department.sql
+    initialSize: 5   #初始连接个数
+    minIdle: 5          #最小闲置数
+    maxActive: 20       #最大活跃数
+    maxWait: 60000      #最长等待时间
+    timeBetweenEvictionRunsMillis: 60000  #检测连接池的空闲时长
+    minEvictableIdleTimeMillis: 300000    #连接对象在池中的最短生存时长
+    validationQuery: SELECT 1 FROM DUAL
+    testWhileIdle: true  #闲置时测试连接是否可用
+    testOnBorrow: false
+    testOnReturn: false
+    poolPreparedStatements: true
+    #   配置监控统计拦截的filters，去掉后监控界面sql无法统计，'wall'用于防火墙
+    filters: stat,wall,log4j
+    maxPoolPreparedStatementPerConnectionSize: 20
+    useGlobalDataSourceStat: true
+    connectionProperties: druid.stat.mergeSql=true;druid.stat.slowSqlMillis=500  #慢查询sql
+#mybatis:
+#   mapper-locations: classpath:/mapper/*.xml

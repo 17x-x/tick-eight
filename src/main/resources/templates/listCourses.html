@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:p="http://www.w3.org/1999/html">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Bootstrap demo</title>
+    <link href="/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet"  crossorigin="anonymous">
+</head>
+<body>
+<div align="center"><h1>课程管理系统登录界面</h1></div>
+<table class="table table-striped">
+    <tr>
+        <td>id</td><td>name</td><td>授课老师</td>
+    </tr>
+    <tr th:each="course:${courses}">
+        <td th:text="${course.Id}"></td>
+        <td th:text="${course.name}"></td>
+        <td>
+            <div th:each="teacher:${course.teachers}">
+                <span th:text="${teacher.name}"/>
+            </div>
+        </td>
+    </tr>
+</table>
+
+<script src="/bootstrap/dist/js/bootstrap.bundle.min.js"  crossorigin="anonymous"></script>
+</body>
+</html>

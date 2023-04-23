@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:p="http://www.w3.org/1999/html">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Bootstrap demo</title>
+    <link href="/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet"  crossorigin="anonymous">
+</head>
+<body>
+<form action="/Teacher/add.do" method="post" enctype="multipart/form-data">
+<!--    <div class="mb-3">-->
+<!--        <label for="teachernum" class="form-label" th:text="#{Id}">Teachernumber</label>-->
+<!--        <input type="text" class="number-button" name="teachernum" id="teachernum">-->
+<!--    </div>-->
+    <div class="mb-3">
+        <label for="name" class="form-label" th:text="#{name}"></label>
+        <input type="text" class="parameter__name" name="name" id="name">
+    </div>
+    <div class="mb-3">
+        <label for="password" class="form-label" th:text="#{password}"></label>
+        <input type="password" class="password-field" name="password" id="password">
+    </div>
+    <p th:text="#{sex}"></p>
+    <div class="form-check">
+        <input class="form-check-input" type="radio" name="sex" id="flexRadioDefault1 " th:value="1">
+        <label class="form-check-label" for="flexRadioDefault1 " th:text="#{man}"></label>
+    </div>
+    <div class="form-check">
+        <input class="form-check-input" type="radio" name="sex" id="flexRadioDefault2" th:value="0">
+        <label class="form-check-label" for="flexRadioDefault2" th:text="#{woman}"></label>
+    </div>
+    <br>
+    <div class="mb-3">
+        <label for="birthday" class="form-label" th:text="#{birthday}"></label>
+        <input type="text" class="birthday" name="birthday" id="birthday">
+    </div>
+<!--    <div class="mb-3">-->
+<!--        <label for="course_id" class="form-label" th:text="#{course_id}"></label>-->
+<!--        <input type="text" class="course_id" name="course_id" id="course_id">-->
+<!--    </div>-->
+    <p th:text="#{course_id}"></p>
+    <select  name="course_Id">
+        <option th:text="请选择课程" disabled selected hidden></option>
+        <option th:each="course:${courses}" th:text="${course.name}"
+                th:value="${course.id}">
+        </option>
+    </select>
+    <br>
+    <br>
+    <div class="mb-3">
+        <label for="professional" class="form-label" th:text="#{professional}"></label>
+        <input type="text" class="professional" name="professional" id="professional">
+    </div>
+<!--    <div>-->
+<!--        Images:<input type="file" name="file" class="form-control" placeholder="head image">-->
+<!--    </div>-->
+
+    <button type="submit" class="btn btn-outline-primary">提交</button>
+<!--    <a href="?lang=zh_CN">简体中文</a>-->
+<!--    <a href="?lang=en_US">English</a>-->
+<!--    <a href="?lang=zh_TW">繁体中文</a>-->
+</form>
+
+<script src="/bootstrap/dist/js/bootstrap.bundle.min.js"  crossorigin="anonymous"></script>
+</body>
+</html>

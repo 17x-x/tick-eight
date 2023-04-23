@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="en" xmlns:p="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Bootstrap demo</title>
+    <link href="/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet"  crossorigin="anonymous">
+</head>
+<body>
+<div align="center"><h1>学生管理系统登录界面</h1></div>
+<!--<p th:text="${username}"/>-->
+
+<!--<span th:text="${pwd}"/>-->
+<!--<div th:text="${students}"/>-->
+<table class="table table-striped">
+    <tr><th>ID</th><th>NAME</th><th>PASSWORD</th><th>SEX</th><th>CLASS</th><th>BIRTHDAY</th><th>SCORE</th><th>OPERATE</th></tr>
+    <tr th:each="student:${students}">
+        <td th:text="${student.id}"></td>
+        <td th:text="${student.name}"></td>
+        <td th:text="${student.password}"></td>
+        <td th:text="${student.sex==0?'女':'男'}"></td>
+        <td th:text="${student.clazz}"></td>
+        <td th:text="${student.birthday}"></td>
+        <td>
+            <DIV th:each="studentScore:${student.scores}">
+                <span th:text="${studentScore.course.name}"/>: <span th:text="${studentScore.score}"/>
+            </DIV>
+        </td>
+        <td ><a th:href="@{/Student/delete.do(id=${student.id})}"class="btn btn-outline-success">删除</a>
+            <a th:href="@{/Student/toUpdate.do(id=${student.id})}"class="btn btn-outline-success">修改</a> </td>
+    </tr>
+</table>
+<nav aria-label="Page navigation example">
+    <ul class="pagination justify-content-end">
+        <li class="page-item ">
+            <a class="page-link" th:if="${not pageInfo.isFirstPage}" th:href="@{${'/Student/list.do'}(pageNum=${1},pageSize=${pageInfo.pageSize})}" >
+                首页
+            </a>
+            <a class="page-link" th:if="${pageInfo.isFirstPage}" href="javascript:void(0);">
+                首页
+            </a>
+        </li>
+        <li class="page-item ">
+
+            <a class="page-link" th:if="${not pageInfo.isFirstPage}" th:href="@{${'/Student/list.do'}(pageNum=${pageInfo.pageNum-1},pageSize=${pageInfo.pageSize})}" >
+                上一页
+            </a>
+            <a class="page-link" th:if="${pageInfo.isFirstPage}" href="javascript:void(0);" >
+                上一页
+            </a>
+        </li>
+        <li class="page-item " th:each="pageNo : ${pageInfo.navigatepageNums}">
+            <a class="page-link" th:if="${pageInfo.pageNum eq pageNo}" href="javascript:void(0);">
+                <span th:text="${pageNo}"></span>
+            </a>
+
+            <a class="page-link" th:if="${not (pageInfo.pageNum eq pageNo)}" th:href="@{${'/Student/list.do'}(pageNum=${pageNo},pageSize=${pageInfo.pageSize})}">
+                <span th:text="${pageNo}"></span>
+            </a>
+        </li>
+
+        <li class="page-item ">
+            <a class="page-link" th:if="${not pageInfo.isLastPage}" th:href="@{${'/Student/list.do'}(pageNum=${pageInfo.pageNum+1},pageSize=${pageInfo.pageSize})}" aria-label="Next">
+                下一页
+            </a>
+            <a class="page-link" th:if="${pageInfo.isLastPage}" href="javascript:void(0);" aria-label="Next">
+                下一页
+            </a>
+        </li>
+        <li class="page-item ">
+            <a class="page-link" th:if="${not pageInfo.isLastPage}" th:href="@{${'/Student/list.do'}(pageNum=${pageInfo.pages},pageSize=${pageInfo.pageSize})}" >
+                尾页
+            </a>
+            <a class="page-link" th:if="${pageInfo.isLastPage}" href="javascript:void(0);" >
+                尾页
+            </a>
+        </li>
+    </ul>
+</nav>
+<div align="center"><a href="#" class="btn btn-outline-primary" onclick="loadPage('/Student/toAdd.do')">增加学生</a> </div>
+<!--<div th:text="welcome+${session.username}"/>-->
+<script src="/bootstrap/dist/js/bootstrap.bundle.min.js"  crossorigin="anonymous"></script>
+</body>
+</html>

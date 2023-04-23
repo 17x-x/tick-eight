@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:p="http://www.w3.org/1999/html">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Bootstrap demo</title>
+    <link href="/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet"  crossorigin="anonymous">
+</head>
+<body>
+<form action="/Student/update.do" method="post">
+    <div class="mb-3">
+        <label for="id" class="form-label">ID:</label>
+        <input name="id" th:value="${student.id}" id="id" readonly/>
+    </div>
+
+    <div class="mb-3">
+        <label for="name" class="form-label">Student's name:</label>
+        <input type="text" class="password" name="name" id="name" th:value="${student.name}">
+    </div>
+    <div class="mb-3">
+        <label for="password" class="form-label">Password:</label>
+        <input type="password" class="password" name="password" id="password" th:value="${student.password}">
+    </div>
+    性别：
+    <div class="form-check">
+        <input class="form-check-input" type="radio" name="sex" id="flexRadioDefault1" th:checked="${student.sex==1}" th:value="1">
+        <label class="form-check-label" for="flexRadioDefault1">男</label>
+    </div>
+    <div class="form-check">
+        <input class="form-check-input" type="radio" name="sex" id="flexRadioDefault2" th:checked="${student.sex==0}" th:value="0">
+        <label class="form-check-label" for="flexRadioDefault2">女</label>
+    </div>
+    <div class="mb-3">
+        <label for="clazz" class="form-label">Class:</label>
+        <input type="text" class="password" name="clazz" id="clazz" th:value="${student.clazz}">
+    </div>
+    <div class="mb-3">
+        <label for="birthday" class="form-label">Birthday:</label>
+        <input type="text" class="password" name="birthday" id="birthday" th:value="${student.birthday}">
+    </div>
+    <button type="submit" class="btn btn-outline-primary">提交</button>
+</form>
+
+<script src="/bootstrap/dist/js/bootstrap.bundle.min.js"  crossorigin="anonymous"></script>
+</body>
+</html>

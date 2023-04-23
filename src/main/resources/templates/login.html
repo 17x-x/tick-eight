@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Bootstrap demo</title>
+    <link href="/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet"  crossorigin="anonymous">
+</head>
+<body>
+<div align="center"><h1>学生管理系统登录界面</h1></div>
+<form action="/Login.do" method="post">
+    <div class="mb-3">
+        <label for="exampleCheck1" class="form-label">User Name</label>
+        <input type="text" class="form-control" name="username" id="exampleCheck1" aria-describedby="username">
+        <div id="username" class="form-text">We'll never share your username with anyone else.</div>
+    </div>
+    <div class="mb-3">
+        <label for="exampleInputPassword1" class="form-label">Password</label>
+        <input type="password" name="password" class="form-control" id="exampleInputPassword1">
+    </div>
+    <div class="mb-3">
+        <label for="Type" class="form-label">选择身份</label>
+        <select name="Type" id="Type">
+            <option value="1">学生</option>
+            <option value="2">教师</option>
+            <option value="3">管理员</option>
+        </select>
+    </div>
+    <br>
+    <div class="mb-3 form-check">
+        <input type="checkbox" class="form-check-input" id="exampleCheck1" name="freeLogin">
+        <label class="form-check-label" for="exampleCheck1">7天内免登录</label>
+    </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+<script src="/bootstrap/dist/js/bootstrap.bundle.min.js"  crossorigin="anonymous"></script>
+</body>
+</html>

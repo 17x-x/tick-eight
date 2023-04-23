@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8">
+    <title>Ethan系统</title>
+    <link rel="stylesheet" href="/bootstrap/dist/css/bootstrap.min.css">
+    <script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
+    <script src="/bootstrap/dist/js/bootstrap.min.js"></script>
+</head>
+<body>
+<nav class="navbar navbar-expand-lg bg-body-tertiary" role="navigation">
+    <div class="container-fluid">
+        <a class="navbar-brand" href=" ">Ethan系统</a >
+        <ul class="nav justify-content-end">
+            <li class="nav-item">
+                <a href="#" class="nav-link disabled">欢迎您,<span th:text="${session.username}"></span></a >
+            </li>
+            <li class="nav-item">
+                <a href="/Student/logout.do" class="nav-link">安全退出</a >
+            </li>
+        </ul>
+    </div>
+</nav>
+
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-sm-2 list-group" id="menulist">
+            <a href="#" class="list-group-item active" onclick="loadPage('/Student/list.do')">
+                学生信息</a>
+            <a href="#" class="list-group-item" onclick="loadPage('/Teacher/list.do')">
+                教师信息 </a>
+            <a href="#" class="list-group-item" onclick="loadPage('/Admin/list.do')">
+                管理员信息 </a>
+            <a href="#" class="list-group-item" onclick="loadPage('/Course/list.do')">
+                课程管理</a>
+            <a href="#" class="list-group-item" onclick="loadPage('/Score/toGrade.do')">
+                评分</a>
+        </div>
+        <!--左边菜单栏-->
+        <div class="col-sm-10" id="right">
+            <ol class="breadcrumb">
+                <li class="active">菜单
+                </li>
+                <li class="active">学生信息
+                </li>
+            </ol>
+
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    搜索
+                </div>
+                <div class="panel-body">
+                    <form role="form" class="form-inline">
+                        <div class="form-group">
+                            <label for="name">姓名</label>
+                            <input type="text" class="form-control" id="name" placeholder="请输入姓名">
+                        </div>
+                        <div class="form-group">
+                            <label for="name">状态</label>
+                            <select class="form-control">
+                                <option>正常</option>
+                                <option>禁用</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <button type="submit" class="btn btn-default">开始搜索</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+<!-- 底部页脚部分 -->
+<div class="footer">
+    <p class="text-center">
+        2023 &copy; Little Fool.
+    </p>
+</div>
+</body>
+<script>
+    /*
+           * 对选中的标签激活active状态，对先前处于active状态但之后未被选中的标签取消active
+           * （实现左侧菜单中的标签点击后变色的效果）
+           */
+    $(document).ready(function () {
+        $('#menulist> a').click(function (e) {
+            //e.preventDefault();    加上这句则导航的<a>标签会失效
+            $('#menulist> a').removeClass('active');
+            $(this).addClass('active');
+        });
+        $.get('/Student/list.do',function(data,status){
+            $("#right").html(data);
+        });
+    });
+
+
+    function loadPage(url) {
+        $.get(url,function(data,status){
+            $("#right").html(data);
+        });
+    }
+</script>
+</html>
